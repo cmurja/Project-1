@@ -11,19 +11,25 @@ class Movie{
 
 
 class UI {
+    
     addMovieToList(_movie) {  // need to add if else statement 
-       /*  displayMovie(_movie) {
-            if(userMovie.value === '') { 
-                alert("Please input a Value");
-            } 
-            else { */
+       
+ if (
+    title.length ===0 ||
+    princess.length ===0  ||
+    yearReleased.length === 0
+    ) {
+    alert ("missing info");
+     } else {
 
             let html = '<div class="display-movie"><div class="display-title">%album%</div><div class = "display-princess">%princess%</div><div class="display-yearReleased">%yearReleased%</div></div>'
-            let newHtml = html.replace('%title%', movieUI.title);
-            newHtml = newHtml.replace('%princess%', movieUI.princess);
-            newHtml = newHtml.replace('%yearReleased%', movieUI.yearReleased); 
+            let newHtml = html.replace('%title%', movieui.title);
+            newHtml = newHtml.replace('%princess%', movieui.princess);
+            newHtml = newHtml.replace('%yearReleased%', movieui.yearReleased); 
             document.querySelector(".display").insertAdjacentElement('beforeend', newHtml); 
-            }  
+            } 
+            console.log(this.addMovieToList);
+ }
         
         
 
@@ -46,7 +52,7 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
     const princess = document.getElementById('princess').value;
     const yearReleased = document.getElementById('yearReleased').value;
 
-    const Movie = new Movie(title, princess, yearReleased);
+    const movie = new Movie(title, princess, yearReleased);
     //console.log(movie);
 
     const ui = new UI();
