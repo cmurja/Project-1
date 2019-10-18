@@ -6,28 +6,25 @@ class Movie{
         this.princess = princess;  
         this.yearReleased = yearReleased;
     }
-     calculateAge = ()=> new Date().getFullYear() - this.yearReleased;
+     calculateAge() {
+        return new Date().getFullYear() - this.yearReleased;
+
+}
 }
 
 
 class UI {
     
-    addMovieToList(_movie) {  // need to add if else statement 
+    addMovieToList(movie) {  // need to add if else statement 
        
- if (
-    title.length ===0 ||
-    princess.length ===0  ||
-    yearReleased.length === 0
-    ) {
-    alert ("missing info");
-     } else {
+ 
+   
 
             let html = '<div class="display-movie"><div class="display-title">%album%</div><div class = "display-princess">%princess%</div><div class="display-yearReleased">%yearReleased%</div></div>'
-            let newHtml = html.replace('%title%', movieui.title);
-            newHtml = newHtml.replace('%princess%', movieui.princess);
-            newHtml = newHtml.replace('%yearReleased%', movieui.yearReleased); 
+            let newHtml = html.replace('%title%', movie.title);
+            newHtml = newHtml.replace('%princess%', movie.princess);
+            newHtml = newHtml.replace('%yearReleased%', movie.yearReleased); 
             document.querySelector(".display").insertAdjacentElement('beforeend', newHtml); 
-            } 
             console.log(this.addMovieToList);
  }
         
@@ -53,7 +50,7 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
     const yearReleased = document.getElementById('yearReleased').value;
 
     const movie = new Movie(title, princess, yearReleased);
-    //console.log(movie);
+    console.log(movie);
 
     const ui = new UI();
     console.log(ui);
