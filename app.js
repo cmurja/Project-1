@@ -18,7 +18,7 @@ class UI {
             } 
             else { */
 
-            let html = ' <div class="display-movie"><div class="display-title">%album%</div><div class = "display-princess">%princess%</div><div class="display-yearReleased">%yearReleased%</div></div>'
+            let html = '<div class="display-movie"><div class="display-title">%album%</div><div class = "display-princess">%princess%</div><div class="display-yearReleased">%yearReleased%</div></div>'
             let newHtml = html.replace('%title%', movieUI.title);
             newHtml = newHtml.replace('%princess%', movieUI.princess);
             newHtml = newHtml.replace('%yearReleased%', movieUI.yearReleased); 
@@ -41,7 +41,7 @@ class UI {
 }
 
 
-document.getElementById('form').addEventListener('submit', function(e) {
+document.getElementById('movie-form').addEventListener('submit', function(e) {
     const title = document.getElementById('title').value;
     const princess = document.getElementById('princess').value;
     const yearReleased = document.getElementById('yearReleased').value;
