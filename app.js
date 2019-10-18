@@ -1,77 +1,65 @@
+
+//My code
 class Movie{
-    constructor(title, director, leadActor1, leadActor2, yearReleased){
+    constructor(title, princess, yearReleased){
         this.tile = title;
-        this.director = director;  //princess
-        this.leadActor1 = leadActor1;
-        this.leadActor2 = leadActor2;
+        this.princess = princess;  
         this.yearReleased = yearReleased;
     }
      calculateAge = ()=> new Date().getFullYear() - this.yearReleased;
 }
 
-//const Movies =[];
 
-/* const JurrasicPark = new Movie('Jurassic Park', 'Steven Speilberg', 'Jeff Goldblum', 'Steven Neil',1993); */
+class UI {
+    addMovieToList(_movie) {  // need to add if else statement 
+       /*  displayMovie(_movie) {
+            if(userMovie.value === '') { 
+                alert("Please input a Value");
+            } 
+            else { */
 
+            let html = ' <div class="display-movie"><div class="display-title">%album%</div><div class = "display-princess">%princess%</div><div class="display-yearReleased">%yearReleased%</div></div>'
+            let newHtml = html.replace('%title%', movieUI.title);
+            newHtml = newHtml.replace('%princess%', movieUI.princess);
+            newHtml = newHtml.replace('%yearReleased%', movieUI.yearReleased); 
+            document.querySelector(".display").insertAdjacentElement('beforeend', newHtml); 
+            }  
+        
+        
 
-//push into array
-function addMovie(title, director, leadActor1, leadActor2, yearReleased, moviePoster) {
-    Movie.push(new Movie (title, director, leadActor1, leadActor2, yearReleased, moviePoster) );
+    clearFields () {
+        document.getElementById('title').value = "";
+        document.getElementById('princess').value = "";
+        document.getElementById('yearReleased').value = "";
+    }  
+
+    deleteMovie(target) {    
+        if (target.className === "remove-movie") {
+            target.parentElement.remove();
+        }
+    } 
 }
 
 
-//display objects on screen 
-const form = document.querySelector('#movies-form');
-const userTitle = document.querySelector('#title');
-const userDirector = document.querySelector('#director');
-const userleadActor1 = document.querySelector('#leadActor1');
-const userleadActor2 = document.querySelector('#leadActor2');
-const userYearReleased = document.querySelector('#yearReleased');
-const userMoviePoster = document.querySelector('#image');
+document.getElementById('form').addEventListener('submit', function(e) {
+    const title = document.getElementById('title').value;
+    const princess = document.getElementById('princess').value;
+    const yearReleased = document.getElementById('yearReleased').value;
 
+    const Movie = new Movie(title, princess, yearReleased);
+    //console.log(movie);
 
-function eventListeners(){
-    form.addEventListener('submit', displayMovie);
-    display.addEventListener('click', removeMovie);
+    const ui = new UI();
+    console.log(ui);
 
-}
+    ui.addMovieToList(movie);
+    ui.clearFields();
+    e.preventDefault();
+});
 
-
-//creates/insert the HTML for the UI display 
-function displayMovie(e){
-    if (userTitle.value == false || userDirector.value == false || userleadActor1.value == false || userleadActor2.value == false || userYearReleased.value == false){
-        alert('Please input all values');
-    }else {
-        let html='<div class="display-movie"><div class="display-title">%title%</div><div class="display-director">%director%</div><div class= "display-leadActor-1"> %leadActor-1%</div><div class="display-leadActor2"> %leadActor-2% </label></div><div class="display-yearReleased">%yearReleased%</div><div class="display-image"><img src="%url%"></div><div class="remove-movie"><p class="remove-movie">Remove Movie &#10006; </p></div></div>';
-
-        let newHtml = html.replace('%title%', userTitle.value);
-        newHtml = html.replace('%director%', userDirector.value);
-        newHtml = html.replace('%leadActor-1%', userleadActor1.value);
-        newHtml = html.replace('%leadActor-2%', userleadActor2.value);
-        newHtml = html.replace('%yearReleased%', userYearReleased.value);
-        newHtml = html.replace('%url%', userMoviePoster.value);
-        display.insertAdjacentHTML('beforeend', newHtml);
-        e.preventDefault();
-
-
-    }
-    
-}
-
-
-
-///separate event handler for removing/deleting 
-function removeMovie(e){
-    if(e.target.parentElement.classList.contains('remove-movie')){
-        e.target.parentElement.parentElement.remove();
-    }
-}
-
-function clearValues() {
-    document.getElementById("movie-form").reset();
-}
-
-clearValues();
-
-
-//My code
+document.querySelector(".display").addEventListener("click", function(e){
+    const ui = new UI();
+    ui.deleteMovie(e.target);
+    ui.clearFields();
+    e.preventDefault();
+});
